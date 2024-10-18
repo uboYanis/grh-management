@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Employee, EmployeeControllerService } from "../api";
+import {useEffect, useState} from 'react';
+import {Employee, EmployeeControllerService} from "../api";
 
 /**
  * Custom hook to manage employee data.
@@ -25,43 +25,31 @@ export const useEmployees = () => {
     const [error, setError] = useState<string | null>(null);
 
     /**
-     * Function to fetch employees from the API and update the local state.
-     */
-    const fetchEmployees = async () => {
-        try {
-            // API call to fetch all employees
-            const data = await EmployeeControllerService.getEmployees();
-            setEmployees(data); // Update state with the fetched employees
-        } catch (err: unknown) {
-            // Handle different types of errors
-            if (err instanceof Error) {
-                setError(err.message); // If error has a message property, use it
-            } else if (typeof err === 'string') {
-                setError(err); // If error is a string, use it directly
-            } else {
-                setError('An unknown error occurred'); // Fallback for unrecognized errors
-            }
-        } finally {
-            setLoading(false); // Set loading to false after fetching is complete
-        }
-    };
-
-    /**
      * useEffect hook to fetch the list of employees when the component mounts.
      * This effect only runs once because the dependency array is empty ([]).
      */
     useEffect(() => {
-        // Declare a synchronous function to call fetchEmployees
-        const loadEmployees = () => {
-            fetchEmployees(); // Call the asynchronous function
+        const fetchEmployees = async () => {
+            try {
+                // API call to fetch all employees
+                const data = await EmployeeControllerService.getEmployees();
+                setEmployees(data); // Update state with the fetched employees
+            } catch (err: unknown) {
+                // Handle different types of errors
+                if (err instanceof Error) {
+                    setError(err.message); // If error has a message property, use it
+                } else if (typeof err === 'string') {
+                    setError(err); // If error is a string, use it directly
+                } else {
+                    setError('An unknown error occurred'); // Fallback for unrecognized errors
+                }
+            } finally {
+                setLoading(false); // Set loading to false after fetching is complete
+            }
         };
 
-        loadEmployees(); // Invoke the synchronous wrapper
-
-        // Optionally return a cleanup function if necessary
-        return () => {
-            // Cleanup logic if needed
-        };
+        // Trigger the fetch operation
+        fetchEmployees();
     }, []); // Empty dependency array ensures the effect runs only once on mount
 
     /**
@@ -72,7 +60,7 @@ export const useEmployees = () => {
     const createEmployee = async (employee: Employee) => {
         try {
             // API call to create a new employee
-            const newEmployee = await EmployeeControllerService.createEmployee({ requestBody: employee });
+            const newEmployee = await EmployeeControllerService.createEmployee({requestBody: employee});
             setEmployees((prev) => [...prev, newEmployee]); // Add the new employee to the existing list
         } catch (err: unknown) {
             // Handle errors as in the fetchEmployees method
@@ -94,7 +82,7 @@ export const useEmployees = () => {
     const deleteEmployee = async (id: number) => {
         try {
             // API call to delete an employee by ID
-            await EmployeeControllerService.deleteEmployee({ id });
+            await EmployeeControllerService.deleteEmployee({id});
             // Remove the deleted employee from the local state
             setEmployees((prev) => prev.filter(emp => emp.id !== id));
         } catch (err: unknown) {
@@ -110,5 +98,5 @@ export const useEmployees = () => {
     };
 
     // Return the state and functions to be used by the component
-    return { employees, loading, error, createEmployee, deleteEmployee };
+    return {employees, loading, error, createEmployee, deleteEmployee};
 };
