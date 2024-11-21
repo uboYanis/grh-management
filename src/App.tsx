@@ -1,10 +1,10 @@
 import React from 'react';
-import EmployeeManagement from './views/EmployeeManagement';
+import EmployeeDashboard from "./views/EmployeeDashboard";
 
 const App: React.FC = () => {
   return (
       <div>
-        <EmployeeManagement />
+        <EmployeeDashboard />
       </div>
   );
 };
