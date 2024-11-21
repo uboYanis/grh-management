@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useEmployeesHook} from "../hooks/useEmployees";
-import EmployeeTable from "../components/EmployeeTable";
-import EmployeeForm from "../components/EmployeeForm";
+import EmployeeTable from "../components/employee/EmployeeTable";
+import EmployeeForm from "../components/employee/EmployeeForm";
 import {toast} from "react-toastify";
 
 

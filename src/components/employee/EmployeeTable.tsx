@@ -1,5 +1,5 @@
 import React from 'react';
-import { Employee } from '../api';
+import { Employee } from '../../api';
 import EmployeeRow from './EmployeeRow';
 
 type EmployeeTableProps = {

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Employee} from '../api';
+import {Employee} from '../../api';
 
 type EmployeeFormProps = {
     addEmployee: (employee: Employee) => Promise<void>;

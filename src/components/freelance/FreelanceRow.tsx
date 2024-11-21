@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { Employee } from '../api';
+import React, {useState} from 'react';
+import {Freelance} from '../../api';
 
-type EmployeeRowProps = {
-    employee: Employee;
-    modifyEmployee: (id: number, updatedEmployee: Employee) => Promise<void>;
-    removeEmployee: (id: number) => Promise<void>;
+type FreelanceRowProps = {
+    freelance: Freelance;
+    modifyFreelance: (id: number, updatedFreelance: Freelance) => Promise<void>;
+    removeFreelance: (id: number) => Promise<void>;
 };
 
-const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, modifyEmployee, removeEmployee }) => {
+const FreelanceRow: React.FC<FreelanceRowProps> = ({freelance, modifyFreelance, removeFreelance}) => {
     const [isEditing, setIsEditing] = useState(false);
-    const [updatedEmployee, setUpdatedEmployee] = useState<Employee>(employee);
+    const [updatedFreelance, setUpdatedFreelance] = useState<Freelance>(freelance);
 
     const handleSave = async () => {
-        await modifyEmployee(employee.id!, updatedEmployee);
+        await modifyFreelance(freelance.id!, updatedFreelance);
         setIsEditing(false);
     };
 
@@ -22,36 +22,36 @@ const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, modifyEmployee, rem
                 {isEditing ? (
                     <input
                         type="text"
-                        value={updatedEmployee.firstName}
-                        onChange={(e) => setUpdatedEmployee({ ...updatedEmployee, firstName: e.target.value })}
+                        value={updatedFreelance.nom}
+                        onChange={(e) => setUpdatedFreelance({...updatedFreelance, nom: e.target.value})}
                         className="border border-gray-300 p-1"
                     />
                 ) : (
-                    employee.firstName
+                    freelance.nom
                 )}
             </td>
             <td className="py-3 px-6 text-left">
                 {isEditing ? (
                     <input
                         type="text"
-                        value={updatedEmployee.lastName}
-                        onChange={(e) => setUpdatedEmployee({ ...updatedEmployee, lastName: e.target.value })}
+                        value={updatedFreelance.prenom}
+                        onChange={(e) => setUpdatedFreelance({...updatedFreelance, prenom: e.target.value})}
                         className="border border-gray-300 p-1"
                     />
                 ) : (
-                    employee.lastName
+                    freelance.prenom
                 )}
             </td>
             <td className="py-3 px-6 text-left">
                 {isEditing ? (
                     <input
                         type="email"
-                        value={updatedEmployee.email}
-                        onChange={(e) => setUpdatedEmployee({ ...updatedEmployee, email: e.target.value })}
+                        value={updatedFreelance.email}
+                        onChange={(e) => setUpdatedFreelance({...updatedFreelance, email: e.target.value})}
                         className="border border-gray-300 p-1"
                     />
                 ) : (
-                    employee.email
+                    freelance.email
                 )}
             </td>
             <td className="py-3 px-6 text-left">
@@ -63,7 +63,8 @@ const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, modifyEmployee, rem
                 ) : (
                     <>
                         <button onClick={() => setIsEditing(true)} className="text-blue-500">Edit</button>
-                        <button onClick={() => removeEmployee(employee.id!)} className="text-red-500 ml-2">Remove</button>
+                        <button onClick={() => removeFreelance(freelance.id!)} className="text-red-500 ml-2">Remove
+                        </button>
                     </>
                 )}
             </td>
@@ -71,4 +72,4 @@ const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, modifyEmployee, rem
     );
 };
 
-export default EmployeeRow;
+export default FreelanceRow;
