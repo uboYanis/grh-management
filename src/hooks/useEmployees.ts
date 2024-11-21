@@ -99,9 +99,6 @@ export const useEmployeesHook = (): EmployeesHookReturn => {
         } else {
             setErrorMessage('An unknown error occurred');
         }
-
-        // Optional: Log error for debugging purposes
-        console.error(error);
     };
 
     // Return object with typed data

@@ -15,10 +15,9 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ addEmployee }) => {
         try {
             await addEmployee(employee);
             toast.success("Employee added successfully!");
-            setEmployee({ firstName: '', lastName: '', email: '', dateOfBirth: '' }); // Reset the form
+            setEmployee({ firstName: '', lastName: '', email: '', dateOfBirth: '' });
         } catch (error) {
-            console.log("hello ")
-            toast.error("Failed to add employee. Please try again."); // Show error toast
+            toast.error("Failed to add employee. Please try again.");
         }
     };
 
