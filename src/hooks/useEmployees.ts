@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {Employee, EmployeeControllerService} from "../api";
+import {toast} from "react-toastify";
 
 export type EmployeesHookReturn = {
     employeesList: Employee[];
@@ -51,6 +52,7 @@ export const useEmployeesHook = (): EmployeesHookReturn => {
             }
             const newEmployee = await EmployeeControllerService.createEmployee({requestBody: employee});
             setEmployeesList((prev) => [...prev, newEmployee]);
+            toast.success("Employee added successfully");
         } catch (error) {
             handleError(error);
         }
@@ -64,6 +66,7 @@ export const useEmployeesHook = (): EmployeesHookReturn => {
             }
             const updated = await EmployeeControllerService.updateEmployee({id, requestBody: updatedEmployee});
             setEmployeesList((prev) => prev.map(emp => (emp.id === id ? updated : emp)));
+            toast.success("Employee updated successfully");
         } catch (error) {
             handleError(error);
         }
@@ -73,6 +76,7 @@ export const useEmployeesHook = (): EmployeesHookReturn => {
         try {
             await EmployeeControllerService.deleteEmployee({id});
             setEmployeesList((prev) => prev.filter(emp => emp.id !== id));
+            toast.success("Employee deleted successfully");
         } catch (error) {
             handleError(error);
         }
