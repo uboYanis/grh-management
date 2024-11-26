@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import FreelanceForm from '../components/FreelanceForm';
 import {useFreelancesHook} from '../hooks/useFreelances';
-import {useHistory} from 'react-router-dom';
-import {toast} from "react-toastify";
-import {Freelance} from "../api";
+import {useNavigate} from 'react-router-dom';
+import {toast} from 'react-toastify';
+import {Freelance} from '../api';
 
 const FreelanceAddPage: React.FC = () => {
     const {addFreelance, errorMessage} = useFreelancesHook();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (errorMessage) {
@@ -17,12 +17,13 @@ const FreelanceAddPage: React.FC = () => {
 
     const handleAddFreelance = async (newFreelance: Freelance) => {
         await addFreelance(newFreelance);
-        history.push('/freelances');
+        navigate('/freelances');
     };
 
     return (
         <div>
-            <FreelanceForm onSubmit={handleAddFreelance} initialData={{nom: '', prenom: '', email: ''}} isUpdate={false}/>
+            <FreelanceForm onSubmit={handleAddFreelance} initialData={{nom: '', prenom: '', email: ''}}
+                           isUpdate={false}/>
         </div>
     );
 };

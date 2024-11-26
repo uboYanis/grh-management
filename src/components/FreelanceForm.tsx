@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Freelance } from '../api';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface FreelanceFormProps {
     onSubmit: (freelance: Freelance) => void;
     initialData?: Freelance;
-    isUpdate: boolean;  // Paramètre pour distinguer si c'est une mise à jour ou une ajout
+    isUpdate: boolean;
 }
 
 const FreelanceForm: React.FC<FreelanceFormProps> = ({ onSubmit, initialData, isUpdate }) => {
     const [freelance, setFreelance] = useState<Freelance>(initialData || { nom: '', prenom: '', email: '' });
-    const history = useHistory();
+    const navigate = useNavigate(); // Remplacer useHistory par useNavigate
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFreelance({ ...freelance, [e.target.name]: e.target.value });
@@ -19,7 +19,7 @@ const FreelanceForm: React.FC<FreelanceFormProps> = ({ onSubmit, initialData, is
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         onSubmit(freelance);
-        history.push('/freelance');
+        navigate('/freelances');
     };
 
     return (
