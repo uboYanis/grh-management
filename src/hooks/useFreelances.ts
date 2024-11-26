@@ -10,6 +10,7 @@ export type FreelancesHookReturn = {
     modifyFreelance: (id: number, updatedFreelance: Freelance) => Promise<void>;
     removeFreelance: (id: number) => Promise<void>;
     fetchFreelanceById: (id: number) => Promise<Freelance | undefined>;
+    getAllFreelances: () => Promise<Freelance[] | undefined>;  // Renamed function
 };
 
 /**
@@ -23,6 +24,7 @@ export type FreelancesHookReturn = {
  * - modifyFreelance: Function to update an existing freelance's data.
  * - removeFreelance: Function to remove a freelance by their ID.
  * - fetchFreelanceById: Function to fetch a single freelance by ID.
+ * - getAllFreelances: Function to fetch all freelances (renamed).
  */
 export const useFreelancesHook = (): FreelancesHookReturn => {
     const [freelancesList, setFreelancesList] = useState<Freelance[]>([]);
@@ -90,8 +92,16 @@ export const useFreelancesHook = (): FreelancesHookReturn => {
         }
     };
 
+    const getAllFreelances = async (): Promise<Freelance[] | undefined> => {
+        try {
+            setFreelancesList(await FreelanceControllerService.getFreelances());
+        } catch (error) {
+            handleError(error);
+            return undefined;  // Return undefined if there's an error
+        }
+    };
+
     const isValidFreelance = (freelance: Freelance): boolean => {
-        // Basic validation logic
         return freelance.nom !== '' && freelance.prenom !== '' && freelance.email !== '';
     };
 
@@ -114,5 +124,6 @@ export const useFreelancesHook = (): FreelancesHookReturn => {
         modifyFreelance,
         removeFreelance,
         fetchFreelanceById,
+        getAllFreelances,  // Renamed method
     };
 };
