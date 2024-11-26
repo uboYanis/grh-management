@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { ApiRequestOptions } from './ApiRequestOptions';
-import env from "react-dotenv";
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
 type Headers = Record<string, string>;
@@ -21,7 +20,7 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-    BASE: env.API_BASE_URL ||'xxxxxxxxx',
+    BASE: 'http://localhost:8080',
     VERSION: '0',
     WITH_CREDENTIALS: false,
     CREDENTIALS: 'include',
