@@ -29,7 +29,7 @@ const FreelanceEditPage: React.FC = () => {
     const handleEditFreelance = async (updatedFreelance: Freelance) => {
         if (freelance?.id) {
             await modifyFreelance(freelance.id, updatedFreelance);
-            history.push('/freelance');
+            history.push('/freelances');
         }
     };
 

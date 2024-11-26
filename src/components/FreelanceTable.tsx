@@ -31,7 +31,7 @@ const FreelanceTable: React.FC<FreelanceTableProps> = ({ freelances, onDelete })
                         <td className="px-6 py-4 flex space-x-3">
                             {/* View Button */}
                             <Link
-                                to={`/freelance/details/${freelance.id}`}
+                                to={`/freelances/details/${freelance.id}`}
                                 className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300 ease-in-out"
                             >
                                 Afficher
@@ -39,7 +39,7 @@ const FreelanceTable: React.FC<FreelanceTableProps> = ({ freelances, onDelete })
 
                             {/* Edit Button */}
                             <Link
-                                to={`/freelance/edit/${freelance.id}`}
+                                to={`/freelances/edit/${freelance.id}`}
                                 className="bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 transition duration-300 ease-in-out"
                             >
                                 Modifier

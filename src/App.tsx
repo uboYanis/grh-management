@@ -9,10 +9,10 @@ const App: React.FC = () => {
     return (
         <Router>
             <Switch>
-                <Route path="/freelance" exact component={FreelanceListPage} />
-                <Route path="/freelance/add" component={FreelanceAddPage} />
-                <Route path="/freelance/edit/:id" component={FreelanceEditPage} />
-                <Route path="/freelance/details/:id" component={FreelanceDetailsPage} />
+                <Route path="/freelances" exact component={FreelanceListPage} />
+                <Route path="/freelances/add" component={FreelanceAddPage} />
+                <Route path="/freelances/edit/:id" component={FreelanceEditPage} />
+                <Route path="/freelances/details/:id" component={FreelanceDetailsPage} />
             </Switch>
         </Router>
     );

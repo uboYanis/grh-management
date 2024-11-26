@@ -17,7 +17,7 @@ const FreelanceAddPage: React.FC = () => {
 
     const handleAddFreelance = async (newFreelance: Freelance) => {
         await addFreelance(newFreelance);
-        history.push('/freelance');
+        history.push('/freelances');
     };
 
     return (
