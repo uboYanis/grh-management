@@ -51,7 +51,7 @@ const FreelanceDetails: React.FC = () => {
 
             <div className="mt-6 flex justify-center">
                 <button
-                    onClick={() => history.push('/freelance')}
+                    onClick={() => history.push('/freelances')}
                     className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200"
                 >
                     Fermer
